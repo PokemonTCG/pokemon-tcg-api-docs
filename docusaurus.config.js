@@ -79,7 +79,7 @@ module.exports = {
             },
             {
               label: 'Ko-fi',
-              href: 'https://ko-fi.com/A5302KVN',
+              href: 'https://ko-fi.com/pokemontcg',
             },
           ],
         },
