@@ -29,7 +29,6 @@ export default function Home() {
   const {siteConfig} = useDocusaurusContext();
   return (
     <Layout
-      title={`${siteConfig.title}`}
       description="Pokémon TCG API Documentation">
       <HomepageHeader />
       <main>
