@@ -41,15 +41,15 @@ module.exports = {
           items: [
             {
               label: 'Introduction',
-              to: '/docs',
+              to: '/',
             },
             {
               label: 'Getting Started',
-              to: '/docs/getting-started/authentication',
+              to: '/getting-started/authentication',
             },
             {
               label: 'Developer SDKs',
-              to: '/docs/sdks/overview',
+              to: '/sdks/overview',
             },
           ],
         },
@@ -110,6 +110,7 @@ module.exports = {
       '@docusaurus/preset-classic',
       {
         docs: {
+          routeBasePath: '/',
           sidebarPath: require.resolve('./sidebars.js'),
           // Please change this to your repo.
           editUrl:
