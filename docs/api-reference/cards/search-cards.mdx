@@ -1,0 +1,368 @@
+---
+sidebar_position: 2
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+# Search cards
+
+Search for one or many cards given a search query.
+
+## HTTP Request
+
+```
+GET https://api.pokemontcg.io/v2/cards
+```
+
+## URL Parameters
+
+*None*
+
+## Body Parameters
+
+*None*
+
+## Query Parameters
+
+All query parameters are optional.
+
+| Parameter    | Description                                                        | Default Value    |
+|--------------|--------------------------------------------------------------------|------------------|
+| **q**        | The search query. Examples can be found below.                     |                  |
+| **page**     | The page of data to access.                                        | 1                |
+| **pageSize** | The maximum amount of cards to return.                             | 250 (max of 250) |
+| **orderBy**  | The field(s) to order the results by. Examples can be found below. |                  |
+
+
+---
+
+To perform search queries, you use the `q` parameter. The search syntax is a very familiar Lucene like syntax.
+
+## Keyword matching:
+
+Search for all cards that have "charizard" in the name field.
+
+```
+name:charizard
+```
+
+Search for the phrase "venusaur v" in the name field.
+
+```
+name:"venusaur v"
+```
+
+Search for "charizard" in the name field AND the type "mega" in the subtypes field.
+
+```
+name:charizard subtypes:mega
+```
+
+Search for "charizard" in the name field AND either the subtypes of "mega" or "vmax."
+
+```
+name:charizard (subtypes:mega OR subtypes:vmax)
+```
+
+Search for all "mega" subtypes, but NOT water types.
+
+```
+subtypes:mega -types:water
+```
+
+## Wildcard Matching
+
+Search for any card that starts with "char" in the name field.
+
+```
+name:char*
+```
+
+Search for any card that starts with "char" in the name and ends with "der."
+
+```
+name:char*der
+```
+
+## Exact Matching
+
+Search for any card named "charizard." That is, no other word except for "charizard" appears in the name field.
+
+```
+!name:charizard
+```
+
+## Range Searches
+
+Some fields support searching on a range. This includes fields with numerical data like `hp` and `nationalPokedexNumbers`.
+
+Search for only cards that feature the original 151 pokemon.
+
+```
+nationalPokedexNumbers:[1 TO 151]
+```
+
+Using square brackets `[` and `]` means to do an inclusive range search, while using curly braces `{` and `}` means exclusive.
+
+Search for cards with a max HP up to 100.
+
+```
+hp:[* TO 100]
+```
+
+Search for cards with any HP greater than or equal to 150.
+
+```
+hp:[150 TO *]
+```
+
+## Search on nested fields
+
+To search nested fields, use a period `.` as a separator. For example, to filter by the set id:
+
+```
+set.id:sm1
+```
+
+Or to filter on cards where they have an attack named "Spelunk":
+
+```
+attacks.name:Spelunk
+```
+
+Find cards that are banned in Standard.
+
+```
+legalities.standard:banned
+```
+
+Every field in the response is searchable.
+
+## Ordering Data
+
+You can also order data using the `orderBy` query parameter.
+
+Order all cards from Sun & Moon by their number.
+
+```
+?orderBy=number
+```
+
+Order all cards from Sun & Moon by their name (ascending) and then their number (descending)
+
+```
+?orderBy=name,-number
+```
+
+---
+
+
+## Code Samples
+
+<Tabs
+  defaultValue="python"
+  values={[
+      {label: 'Python', value: 'python'},
+    {label: 'Ruby', value: 'ruby'},
+    {label: 'Javascript', value: 'javascript'},
+    {label: 'cURL', value: 'shell'}
+  ]}>
+  <TabItem value="python">
+
+```python
+# Get all cards (will take awhile, automatically pages through data)
+cards = Card.all()
+
+# Get a single page of cards
+cards = Card.where(page=1, pageSize=250)
+
+# Filter cards via query parameters
+cards = Card.where(q='set.name:generations subtypes:mega')
+
+# Order by release date (descending)
+cards = Card.where(q='subtypes:mega', orderBy='-set.releaseDate')
+```
+
+  </TabItem>
+    <TabItem value="ruby">
+
+```ruby
+# Get all cards (will take awhile, automatically pages through data)
+cards = Pokemon::Card.all
+
+# Get a single page of cards
+cards = Pokemon::Card.where(page: 1, pageSize: 250)
+
+# Filter cards via query parameters
+cards = Pokemon::Card.where(q: 'set.name:generations subtypes:mega')
+
+# Order by release date (descending)
+cards = Pokemon::Card.where(q: 'subtypes:mega', orderBy: '-set.releaseDate')
+```
+
+  </TabItem>
+  <TabItem value="javascript">
+
+```javascript
+// Get all cards (will take awhile, automatically pages through data)
+pokemon.card.all()
+  .then((cards) => {
+      console.log(cards[0].name) // "Blastoise"
+  })
+
+// Get a single page of cards
+pokemon.card.where({ pageSize: 250, page: 1 })
+  .then(result => {
+      console.log(result.data[0].name) // "Blastoise"
+  })
+
+// Filter cards via query parameters
+pokemon.card.all({ q: 'set.id:generations subtypes:mega' })
+  .then(result => {
+      console.log(result.data[0].name) // "Venusaur"
+  })
+
+// Order by release date (descending)
+pokemon.card.all({ q: 'subtypes:mega', orderBy: '-set.releaseDate' })
+  .then(result => {
+      console.log(result.data[0].name)
+  })
+```
+
+  </TabItem>
+  <TabItem value="shell">
+
+```shell
+# Get all cards
+curl "https://api.pokemontcg.io/v2/cards"
+
+# Get a single page of cards
+curl "https://api.pokemontcg.io/v2/cards?page=1&pageSize=250"
+
+# Filter cards via query parameters
+curl "https://api.pokemontcg.io/v2/cards?q=set.id:generations subtypes:mega"
+
+# Order by release date (descending)
+curl "https://api.pokemontcg.io/v2/cards?q=subtypes:mega&orderBy=-set.releaseDate"
+```
+
+  </TabItem>
+</Tabs>
+
+## Sample Response
+
+```json
+{
+  "data": [
+    {
+      "id": "g1-1",
+      "name": "Venusaur-EX",
+      "supertype": "Pokémon",
+      "subtypes": [
+        "Basic",
+        "EX"
+      ],
+      "hp": "180",
+      "types": [
+        "Grass"
+      ],
+      "evolvesTo": [
+        "M Venusaur-EX"
+      ],
+      "rules": [
+        "Pokémon-EX rule: When a Pokémon-EX has been Knocked Out, your opponent takes 2 Prize cards."
+      ],
+      "attacks": [
+        {
+          "name": "Frog Hop",
+          "cost": [
+            "Grass",
+            "Colorless",
+            "Colorless"
+          ],
+          "convertedEnergyCost": 3,
+          "damage": "40+",
+          "text": "Flip a coin. If heads, this attack does 40 more damage."
+        },
+        {
+          "name": "Poison Impact",
+          "cost": [
+            "Grass",
+            "Grass",
+            "Colorless",
+            "Colorless"
+          ],
+          "convertedEnergyCost": 4,
+          "damage": "80",
+          "text": "Your opponent's Active Pokémon is now Asleep and Poisoned."
+        }
+      ],
+      "weaknesses": [
+        {
+          "type": "Fire",
+          "value": "×2"
+        }
+      ],
+      "retreatCost": [
+        "Colorless",
+        "Colorless",
+        "Colorless",
+        "Colorless"
+      ],
+      "convertedRetreatCost": 4,
+      "set": {
+        "id": "g1",
+        "name": "Generations",
+        "series": "XY",
+        "printedTotal": 115,
+        "total": 115,
+        "legalities": {
+          "unlimited": "Legal",
+          "expanded": "Legal"
+        },
+        "ptcgoCode": "GEN",
+        "releaseDate": "2016/02/22",
+        "updatedAt": "2020/08/14 09:35:00",
+        "images": {
+          "symbol": "https://images.pokemontcg.io/g1/symbol.png",
+          "logo": "https://images.pokemontcg.io/g1/logo.png"
+        }
+      },
+      "number": "1",
+      "artist": "Eske Yoshinob",
+      "rarity": "Rare Holo EX",
+      "nationalPokedexNumbers": [
+        3
+      ],
+      "legalities": {
+        "unlimited": "Legal",
+        "expanded": "Legal"
+      },
+      "images": {
+        "small": "https://images.pokemontcg.io/g1/1.png",
+        "large": "https://images.pokemontcg.io/g1/1_hires.png"
+      },
+      "tcgplayer": {
+        "url": "https://prices.pokemontcg.io/tcgplayer/g1-1",
+        "updatedAt": "2021/07/15",
+        "prices": {
+          "holofoil": {
+            "low": 2.44,
+            "mid": 5.4,
+            "high": 16.99,
+            "market": 5.38,
+            "directLow": 6.1
+          }
+        }
+      }
+    },
+    {...},
+    {...}
+  ],
+  "page": 1,
+  "pageSize": 250,
+  "count": 117,
+  "totalCount": 117
+}
+```

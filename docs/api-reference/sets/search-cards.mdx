@@ -1,0 +1,150 @@
+---
+sidebar_position: 2
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+# Search sets
+
+Search for one or many sets given a search query.
+
+## HTTP Request
+
+```
+GET https://api.pokemontcg.io/v2/sets
+```
+
+## URL Parameters
+
+*None*
+
+## Body Parameters
+
+*None*
+
+## Query Parameters
+
+All query parameters are optional.
+
+| Parameter    | Description                                                        | Default Value    |
+|--------------|--------------------------------------------------------------------|------------------|
+| **q**        | The search query. Examples can be found below.                     |                  |
+| **page**     | The page of data to access.                                        | 1                |
+| **pageSize** | The maximum amount of cards to return.                             | 250 (max of 250) |
+| **orderBy**  | The field(s) to order the results by. Examples can be found below. |                  |
+
+
+---
+
+Look at the /cards endpoint for more details on the advanced query syntax.
+
+
+## Code Samples
+
+<Tabs
+  defaultValue="python"
+  values={[
+      {label: 'Python', value: 'python'},
+    {label: 'Ruby', value: 'ruby'},
+    {label: 'Javascript', value: 'javascript'},
+    {label: 'cURL', value: 'shell'}
+  ]}>
+  <TabItem value="python">
+
+```python
+# Get all sets
+sets = Set.all()
+
+# Filter sets
+sets = Set.where(q='legailities.standard:legal')
+
+# Get a specific page of data
+sets = Set.where(page=2, pageSize=10)
+```
+
+  </TabItem>
+    <TabItem value="ruby">
+
+```ruby
+# Get all sets
+sets = Pokemon::Set.all
+
+# Filter sets
+sets = Pokemon::Set.where(q: 'legailities.standard:legal')
+
+# Get a specific page of data
+sets = Pokemon::Set.where(page: 2, pageSize: 10)
+```
+
+  </TabItem>
+  <TabItem value="javascript">
+
+```javascript
+// Get all sets
+pokemon.set.all()
+  .then((sets) => {
+      console.log(sets[0].name) // "Base"
+  })
+
+// Filter sets
+pokemon.set.where({ q: 'legalities.standard:legal' })
+  .then(result => {
+      console.log(result.data[0].name)
+  })
+
+// Get specific page of data
+pokemon.set.where({ pageSize: 10, page: 2 })
+  .then(result => {
+      console.log(result.data[0].name)
+  })
+```
+
+  </TabItem>
+  <TabItem value="shell">
+
+```shell
+# Get all sets
+curl "https://api.pokemontcg.io/v2/sets"
+
+# Filter sets
+curl "https://api.pokemontcg.io/v2/sets?q=legalities.standard:legal"
+
+# Get specific page of data
+curl "https://api.pokemontcg.io/v2/sets?page=2&pageSize=10"
+```
+
+  </TabItem>
+</Tabs>
+
+## Sample Response
+
+```json
+{
+  "data": [
+    {
+      "id": "base1",
+      "name": "Base",
+      "series": "Base",
+      "printedTotal": 102,
+      "total": 102,
+      "legalities": {
+        "unlimited": "Legal"
+      },
+      "ptcgoCode": "BS",
+      "releaseDate": "1999/01/09",
+      "updatedAt": "2020/08/14 09:35:00",
+      "images": {
+        "symbol": "https://images.pokemontcg.io/base1/symbol.png",
+        "logo": "https://images.pokemontcg.io/base1/logo.png"
+      }
+    },
+    {...},
+    {...}
+  ],
+  "page": 1,
+  "pageSize": 250,
+  "count": 123,
+  "totalCount": 123
+}
+```

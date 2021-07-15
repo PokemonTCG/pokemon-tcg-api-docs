@@ -1,0 +1,102 @@
+---
+sidebar_position: 1
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+# Get rarities
+
+Get all possible rarities
+
+## HTTP Request
+
+```
+GET https://api.pokemontcg.io/v2/rarities
+```
+
+## URL Parameters
+
+*None*
+
+## Body Parameters
+
+*None*
+
+## Query Parameters
+
+*None*
+
+---
+
+## Code Samples
+
+<Tabs
+  defaultValue="python"
+  values={[
+      {label: 'Python', value: 'python'},
+    {label: 'Ruby', value: 'ruby'},
+    {label: 'Javascript', value: 'javascript'},
+    {label: 'cURL', value: 'shell'}
+  ]}>
+  <TabItem value="python">
+
+```python
+rarities = Rarity.all()
+```
+
+  </TabItem>
+    <TabItem value="ruby">
+
+```ruby
+rarities = Pokemon::Rarity.all
+```
+
+  </TabItem>
+  <TabItem value="javascript">
+
+```javascript
+pokemon.rarity.all()
+```
+
+  </TabItem>
+  <TabItem value="shell">
+
+```shell
+curl "https://api.pokemontcg.io/v2/rarities"
+```
+
+  </TabItem>
+</Tabs>
+
+## Sample Response
+
+```json
+{
+  "data": [
+      "Amazing Rare",
+      "Common",
+      "LEGEND",
+      "Promo",
+      "Rare",
+      "Rare ACE",
+      "Rare BREAK",
+      "Rare Holo",
+      "Rare Holo EX",
+      "Rare Holo GX",
+      "Rare Holo LV.X",
+      "Rare Holo Star",
+      "Rare Holo V",
+      "Rare Holo VMAX",
+      "Rare Prime",
+      "Rare Prism Star",
+      "Rare Rainbow",
+      "Rare Secret",
+      "Rare Shining",
+      "Rare Shiny",
+      "Rare Shiny GX",
+      "Rare Ultra",
+      "Uncommon"
+  ]
+}
+```

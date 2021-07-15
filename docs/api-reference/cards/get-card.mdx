@@ -1,0 +1,187 @@
+---
+sidebar_position: 2
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+# Get a card
+
+Fetch the details of a single card.
+
+## HTTP Request
+
+```
+GET https://api.pokemontcg.io/v2/cards/<id>
+```
+
+## URL Parameters
+
+
+| Parameter | Description |
+|--------------------------------------|---------------------------------------------------------------------------------------------------------|
+| **id** | The Id of the card |
+
+
+## Body Parameters
+
+*None*
+
+## Query Parameters
+
+*None*
+
+## Code Samples
+
+<Tabs
+  defaultValue="python"
+  values={[
+      {label: 'Python', value: 'python'},
+    {label: 'Ruby', value: 'ruby'},
+    {label: 'Javascript', value: 'javascript'},
+    {label: 'cURL', value: 'shell'}
+  ]}>
+  <TabItem value="python">
+
+```python
+card = Card.find('xy1-1')
+```
+
+  </TabItem>
+    <TabItem value="ruby">
+
+```ruby
+card = Pokemon::Card.find('xy1-1')
+```
+
+  </TabItem>
+  <TabItem value="javascript">
+
+```javascript
+pokemon.card.find('base1-4')
+.then(card => {
+    console.log(card.name) // "Charizard"
+})
+```
+
+  </TabItem>
+  <TabItem value="shell">
+
+```shell
+curl --request GET \
+  --url https://api.pokemontcg.io/v2/cards/xy1-1 \
+  --header 'X-Api-Key: <api_key_here>'
+```
+
+  </TabItem>
+</Tabs>
+
+
+## Sample Response
+
+```json
+{
+  "data": {
+    "id": "xy1-1",
+    "name": "Venusaur-EX",
+    "supertype": "Pokémon",
+    "subtypes": [
+      "Basic",
+      "EX"
+    ],
+    "hp": "180",
+    "types": [
+      "Grass"
+    ],
+    "evolvesTo": [
+      "M Venusaur-EX"
+    ],
+    "rules": [
+      "Pokémon-EX rule: When a Pokémon-EX has been Knocked Out, your opponent takes 2 Prize cards."
+    ],
+    "attacks": [
+      {
+        "name": "Poison Powder",
+        "cost": [
+          "Grass",
+          "Colorless",
+          "Colorless"
+        ],
+        "convertedEnergyCost": 3,
+        "damage": "60",
+        "text": "Your opponent's Active Pokémon is now Poisoned."
+      },
+      {
+        "name": "Jungle Hammer",
+        "cost": [
+          "Grass",
+          "Grass",
+          "Colorless",
+          "Colorless"
+        ],
+        "convertedEnergyCost": 4,
+        "damage": "90",
+        "text": "Heal 30 damage from this Pokémon."
+      }
+    ],
+    "weaknesses": [
+      {
+        "type": "Fire",
+        "value": "×2"
+      }
+    ],
+    "retreatCost": [
+      "Colorless",
+      "Colorless",
+      "Colorless",
+      "Colorless"
+    ],
+    "convertedRetreatCost": 4,
+    "set": {
+      "id": "xy1",
+      "name": "XY",
+      "series": "XY",
+      "printedTotal": 146,
+      "total": 146,
+      "legalities": {
+        "unlimited": "Legal",
+        "expanded": "Legal"
+      },
+      "ptcgoCode": "XY",
+      "releaseDate": "2014/02/05",
+      "updatedAt": "2018/03/04 10:35:00",
+      "images": {
+        "symbol": "https://images.pokemontcg.io/xy1/symbol.png",
+        "logo": "https://images.pokemontcg.io/xy1/logo.png"
+      }
+    },
+    "number": "1",
+    "artist": "Eske Yoshinob",
+    "rarity": "Rare Holo EX",
+    "nationalPokedexNumbers": [
+      3
+    ],
+    "legalities": {
+      "unlimited": "Legal",
+      "expanded": "Legal"
+    },
+    "images": {
+      "small": "https://images.pokemontcg.io/xy1/1.png",
+      "large": "https://images.pokemontcg.io/xy1/1_hires.png"
+    },
+    "tcgplayer": {
+      "url": "https://prices.pokemontcg.io/tcgplayer/xy1-1",
+      "updatedAt": "2021/07/09",
+      "prices": {
+        "holofoil": {
+          "low": 1.0,
+          "mid": 3.46,
+          "high": 12.95,
+          "market": 3.32,
+          "directLow": 2.95
+        }
+      }
+    }
+  }
+}
+```

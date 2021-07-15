@@ -1,0 +1,82 @@
+---
+sidebar_position: 1
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+# Get supertypes
+
+Get all possible supertypes
+
+## HTTP Request
+
+```
+GET https://api.pokemontcg.io/v2/supertypes
+```
+
+## URL Parameters
+
+*None*
+
+## Body Parameters
+
+*None*
+
+## Query Parameters
+
+*None*
+
+---
+
+## Code Samples
+
+<Tabs
+  defaultValue="python"
+  values={[
+      {label: 'Python', value: 'python'},
+    {label: 'Ruby', value: 'ruby'},
+    {label: 'Javascript', value: 'javascript'},
+    {label: 'cURL', value: 'shell'}
+  ]}>
+  <TabItem value="python">
+
+```python
+supertypes = Supertype.all()
+```
+
+  </TabItem>
+    <TabItem value="ruby">
+
+```ruby
+supertypes = Pokemon::Supertype.all
+```
+
+  </TabItem>
+  <TabItem value="javascript">
+
+```javascript
+pokemon.supertype.all()
+```
+
+  </TabItem>
+  <TabItem value="shell">
+
+```shell
+curl "https://api.pokemontcg.io/v2/supertypes"
+```
+
+  </TabItem>
+</Tabs>
+
+## Sample Response
+
+```json
+{
+  "data": [
+    "Energy",
+    "Pokémon",
+    "Trainer"
+  ]
+}
+```

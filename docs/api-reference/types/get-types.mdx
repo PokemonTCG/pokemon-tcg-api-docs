@@ -1,0 +1,90 @@
+---
+sidebar_position: 1
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+# Get types
+
+Get all possible types
+
+## HTTP Request
+
+```
+GET https://api.pokemontcg.io/v2/types
+```
+
+## URL Parameters
+
+*None*
+
+## Body Parameters
+
+*None*
+
+## Query Parameters
+
+*None*
+
+---
+
+## Code Samples
+
+<Tabs
+  defaultValue="python"
+  values={[
+      {label: 'Python', value: 'python'},
+    {label: 'Ruby', value: 'ruby'},
+    {label: 'Javascript', value: 'javascript'},
+    {label: 'cURL', value: 'shell'}
+  ]}>
+  <TabItem value="python">
+
+```python
+types = Type.all()
+```
+
+  </TabItem>
+    <TabItem value="ruby">
+
+```ruby
+types = Pokemon::Type.all
+```
+
+  </TabItem>
+  <TabItem value="javascript">
+
+```javascript
+pokemon.type.all()
+```
+
+  </TabItem>
+  <TabItem value="shell">
+
+```shell
+curl "https://api.pokemontcg.io/v2/types"
+```
+
+  </TabItem>
+</Tabs>
+
+## Sample Response
+
+```json
+{
+  "data": [
+    "Colorless",
+    "Darkness",
+    "Dragon",
+    "Fairy",
+    "Fighting",
+    "Fire",
+    "Grass",
+    "Lightning",
+    "Metal",
+    "Psychic",
+    "Water"
+  ]
+}
+```

@@ -1,0 +1,104 @@
+---
+sidebar_position: 1
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+# Get subtypes
+
+Get all possible subtypes
+
+## HTTP Request
+
+```
+GET https://api.pokemontcg.io/v2/subtypes
+```
+
+## URL Parameters
+
+*None*
+
+## Body Parameters
+
+*None*
+
+## Query Parameters
+
+*None*
+
+---
+
+## Code Samples
+
+<Tabs
+  defaultValue="python"
+  values={[
+      {label: 'Python', value: 'python'},
+    {label: 'Ruby', value: 'ruby'},
+    {label: 'Javascript', value: 'javascript'},
+    {label: 'cURL', value: 'shell'}
+  ]}>
+  <TabItem value="python">
+
+```python
+subtypes = Subtype.all()
+```
+
+  </TabItem>
+    <TabItem value="ruby">
+
+```ruby
+types = Pokemon::Subtype.all
+```
+
+  </TabItem>
+  <TabItem value="javascript">
+
+```javascript
+pokemon.subtype.all()
+```
+
+  </TabItem>
+  <TabItem value="shell">
+
+```shell
+curl "https://api.pokemontcg.io/v2/subtypes"
+```
+
+  </TabItem>
+</Tabs>
+
+## Sample Response
+
+```json
+{
+  "data": [
+    "BREAK",
+    "Baby",
+    "Basic",
+    "EX",
+    "GX",
+    "Goldenrod Game Corner",
+    "Item",
+    "LEGEND",
+    "Level-Up",
+    "MEGA",
+    "Pokémon Tool",
+    "Pokémon Tool F",
+    "Rapid Strike",
+    "Restored",
+    "Rocket's Secret Machine",
+    "Single Strike",
+    "Special",
+    "Stadium",
+    "Stage 1",
+    "Stage 2",
+    "Supporter",
+    "TAG TEAM",
+    "Technical Machine",
+    "V",
+    "VMAX"
+  ]
+}
+```
