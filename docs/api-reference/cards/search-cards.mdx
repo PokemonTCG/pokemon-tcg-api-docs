@@ -218,7 +218,7 @@ pokemon.card.where({ pageSize: 250, page: 1 })
   })
 
 // Filter cards via query parameters
-pokemon.card.all({ q: 'set.id:generations subtypes:mega' })
+pokemon.card.all({ q: 'set.name:generations subtypes:mega' })
   .then(result => {
       console.log(result.data[0].name) // "Venusaur"
   })
@@ -241,7 +241,7 @@ curl "https://api.pokemontcg.io/v2/cards"
 curl "https://api.pokemontcg.io/v2/cards?page=1&pageSize=250"
 
 # Filter cards via query parameters
-curl "https://api.pokemontcg.io/v2/cards?q=set.id:generations subtypes:mega"
+curl "https://api.pokemontcg.io/v2/cards?q=set.name:generations subtypes:mega"
 
 # Order by release date (descending)
 curl "https://api.pokemontcg.io/v2/cards?q=subtypes:mega&orderBy=-set.releaseDate"
