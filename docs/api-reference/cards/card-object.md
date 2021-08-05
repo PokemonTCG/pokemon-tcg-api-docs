@@ -199,13 +199,13 @@ The images for a card.
 
 ### **tcgplayer** *hash*
 
-The TCGPlayer information for a given card.
+The TCGPlayer information for a given card. ALL PRICES ARE IN US DOLLARS.
 
 | Property       | Description                        |
 |--------------------------|----------------------------------------------------------------|
 | **url** *string*        | The URL to the TCGPlayer store page to purchase this card.                 |
 | **updatedAt** *string* | A date that the price was last updated. In the format of YYYY/MM/DD |
-| **prices** *hash* | A hash of price types. See below for possible values. |
+| **prices** *hash* | A hash of price types. *All prices are in US Dollars*. See below for possible values. |
 
 The following price types are available:
 
@@ -220,6 +220,39 @@ Each price type can have the following fields (all provided via TCGPlayer):
 | **high** *decimal* | The high price of the card |
 | **market** *decimal* | The market value of the card. This is usually the best representation of what people are willing to pay. |
 | **directLow** *decimal* | The direct low price of the card |
+
+---
+
+### **cardmarket** *hash*
+
+The cardmarket information for a given card. ALL PRICES ARE IN EUROS.
+
+| Property       | Description                        |
+|--------------------------|----------------------------------------------------------------|
+| **url** *string*        | The URL to the cardmarket store page to purchase this card.                 |
+| **updatedAt** *string* | A date that the price was last updated. In the format of YYYY/MM/DD |
+| **prices** *hash* | A hash of price types. *All prices are in Euros*. See below for possible values. |
+
+The following prices are provided by cardmarket and made available via this API:
+
+| Property                       | Description                                                                                                                                  |
+|--------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------|
+| **averageSellPrice** *decimal* | The average sell price as shown in the chart at the website for non-foils                                                                    |
+| **lowPrice** *decimal*         | The lowest price at the market for non-foils                                                                                                 |
+| **trendPrice** *decimal*       | The trend price as shown at the website (and in the chart) for non-foils                                                                     |
+| **germanProLow** *decimal*     | The lowest sell price from German professional sellers                                                                                       |
+| **suggestedPrice** *decimal*   | A suggested sell price for professional users, determined by an internal algorithm; this algorithm is controlled by cardmarket, not this API |
+| **reverseHoloSell** *decimal*  | The average sell price as shown in the chart at the website for reverse holos                                                                |
+| **reverseHoloLow** *decimal*   | The lowest price at the market as shown at the website (for condition EX+) for reverse holos                                                 |
+| **reverseHoloTrend** *decimal* | The trend price as shown at the website (and in the chart) for reverse holos                                                                 |
+| **lowPriceExPlus** *decimal*   | The lowest price at the market for non-foils with condition EX or better                                                                     |
+| **avg1** *decimal*             | The average sale price over the last day                                                                                                     |
+| **avg7** *decimal*             | The average sale price over the last 7 days                                                                                                  |
+| **avg30** *decimal*            | The average sale price over the last 30 days                                                                                                 |
+| **reverseHoloAvg1** *decimal*  | The average sale price over the last day for reverse holos                                                                                   |
+| **reverseHoloAvg7** *decimal*  | The average sale price over the last 7 days for reverse holos                                                                                |
+| **reverseHoloAvg30** *decimal* | The average sale price over the last 30 days for reverse holos                                                                               |
+
 
 ---
 
@@ -306,22 +339,43 @@ Each price type can have the following fields (all provided via TCGPlayer):
   },
   "tcgplayer": {
     "url": "https://prices.pokemontcg.io/tcgplayer/swsh4-25",
-    "updatedAt": "2021/07/09",
+    "updatedAt": "2021/08/04",
     "prices": {
-      "reverseHolofoil": {
-        "low": 2.58,
-        "mid": 7.37,
-        "high": 100.0,
-        "market": 3.61,
-        "directLow": 2.55
-      },
       "normal": {
-        "low": 1.0,
-        "mid": 3.99,
-        "high": 49.99,
-        "market": 2.81,
-        "directLow": 2.12
+        "low": 1.73,
+        "mid": 3.54,
+        "high": 12.99,
+        "market": 2.82,
+        "directLow": 3.93
+      },
+      "reverseHolofoil": {
+        "low": 3,
+        "mid": 8.99,
+        "high": 100,
+        "market": 3.89,
+        "directLow": 4.46
       }
+    }
+  },
+  "cardmarket": {
+    "url": "https://prices.pokemontcg.io/cardmarket/swsh4-25",
+    "updatedAt": "2021/08/04",
+    "prices": {
+      "averageSellPrice": 9.38,
+      "lowPrice": 8.95,
+      "trendPrice": 10.29,
+      "germanProLow": null,
+      "suggestedPrice": null,
+      "reverseHoloSell": null,
+      "reverseHoloLow": null,
+      "reverseHoloTrend": null,
+      "lowPriceExPlus": 8.95,
+      "avg1": 9.95,
+      "avg7": 9.35,
+      "avg30": 11.31,
+      "reverseHoloAvg1": null,
+      "reverseHoloAvg7": null,
+      "reverseHoloAvg30": null
     }
   }
 }
