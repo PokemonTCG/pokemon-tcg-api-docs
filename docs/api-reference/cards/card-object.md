@@ -36,7 +36,7 @@ The level of the card. This only pertains to cards from older sets and those of 
 
 ---
 
-### **hp** *integer*
+### **hp** *string*
 
 The hit points of the card.
 
