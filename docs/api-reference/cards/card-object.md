@@ -186,6 +186,12 @@ The legalities for a given card. A legality will not be present in the hash if i
 
 ---
 
+### **regulationMark** *string*
+
+A letter symbol found on each card that identifies whether it is legal to use in tournament play. Regulation marks were introduced on cards in the Sword & Shield Series.
+
+---
+
 ### **images** *hash*
 
 The images for a card.
