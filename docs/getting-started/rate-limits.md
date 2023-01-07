@@ -10,7 +10,7 @@ Rate limits are enforced for all third-party applications and services. This doc
 ## V2 Rate Limits
 Third-party application rate limits depend on your API key. By default, requests are limited to 20,000/day. If you need a higher rate limit, feel free to contact me via Discord or email and we can discuss.
 
-If you aren’t using an API key, you are rate limited to 1000 requests a day, and a maxium of 30 per minute.
+If you aren’t using an API key, you are rate limited to 1000 requests a day, and a maximum of 30 per minute.
 
 ## V1 (Deprecated) Rate Limits
 Third-party applications are currently throttled to 30 requests per minute. As this API continues to age, the rate limits may be updated to provide better performance to users
