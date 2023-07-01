@@ -58,7 +58,7 @@ Look at the /cards endpoint for more details on the advanced query syntax.
 sets = Set.all()
 
 # Filter sets
-sets = Set.where(q='legailities.standard:legal')
+sets = Set.where(q='legalities.standard:legal')
 
 # Get a specific page of data
 sets = Set.where(page=2, pageSize=10)
@@ -72,7 +72,7 @@ sets = Set.where(page=2, pageSize=10)
 sets = Pokemon::Set.all
 
 # Filter sets
-sets = Pokemon::Set.where(q: 'legailities.standard:legal')
+sets = Pokemon::Set.where(q: 'legalities.standard:legal')
 
 # Get a specific page of data
 sets = Pokemon::Set.where(page: 2, pageSize: 10)
